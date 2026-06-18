@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% from '_sections.html' import render_hobbies %}
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -48,23 +50,7 @@
     <!-- Hobbies Grid -->
     <section class="hobbies-detail-section">
         <div class="container">
-            <div class="hobbies-detailed-grid">
-                {% for hobby in data.hobbies %}
-                    <div class="hobby-card-detail">
-                        <div class="hobby-image-large">
-                            {% if hobby.image.startswith('http') %}
-                                <img src="{{ hobby.image }}" alt="{{ hobby.name }}">
-                            {% else %}
-                                <img src="{{ url_for('static', filename='img/' ~ hobby.image) }}" alt="{{ hobby.name }}">
-                            {% endif %}
-                        </div>
-                        <div class="hobby-content-detail">
-                            <h3>{{ hobby.name }}</h3>
-                            <p>{{ hobby.description }}</p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            {{ render_hobbies(data.hobbies) }}
         </div>
     </section>
 
@@ -77,7 +63,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 {{ data.name }}. All rights reserved.</p>
+            <p>&copy; 2026 {{ data.name }}. All rights reserved.</p>
         </div>
     </footer>
 </body>
