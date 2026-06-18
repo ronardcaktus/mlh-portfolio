@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="My Hobbies - Personal Portfolio">
+    <meta property="og:description" content="Explore my hobbies and interests">
+    <meta property="og:url" content="{{ data.url }}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
+    <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <title>Hobbies - {{ data.title }}</title>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <header class="nav-bar">
+        <div class="nav-content">
+            <a href="/">
+                <div class="nav-logo">
+                    <img src="./static/img/logo.svg" alt="Logo" />
+                </div>
+            </a>
+            <!-- Dynamic Menu Bar -->
+            <nav class="nav-menu">
+                {% for page in pages %}
+                    <a href="{{ page.url }}" class="nav-link{% if page.url == '/hobbies' %} active{% endif %}">{{ page.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Hobbies & Interests</h1>
+            <p class="header-subtitle">Discover what I'm passionate about</p>
+        </div>
+    </section>
+
+    <!-- Hobbies Grid -->
+    <section class="hobbies-detail-section">
+        <div class="container">
+            <div class="hobbies-detailed-grid">
+                {% for hobby in data.hobbies %}
+                    <div class="hobby-card-detail">
+                        <div class="hobby-image-large">
+                            {% if hobby.image.startswith('http') %}
+                                <img src="{{ hobby.image }}" alt="{{ hobby.name }}">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='img/' ~ hobby.image) }}" alt="{{ hobby.name }}">
+                            {% endif %}
+                        </div>
+                        <div class="hobby-content-detail">
+                            <h3>{{ hobby.name }}</h3>
+                            <p>{{ hobby.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="back-section">
+        <div class="container">
+            <a href="/" class="back-link">← Back</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 {{ data.name }}. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
