@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% from '_sections.html' import render_experiences, render_education %}
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -59,26 +61,7 @@
     <section class="experience" id="experience">
         <div class="container">
             <h2>Work Experience</h2>
-            <div class="experience-container">
-                {% for job in data.experiences %}
-                    <div class="experience-item">
-                        <div class="experience-header">
-                            <h3>{{ job.position }}</h3>
-                            <p class="company">{{ job.company }}</p>
-                        </div>
-                        <p class="duration">{{ job.duration }}</p>
-                        {% if job.description is string %}
-                            <p class="description">{{ job.description }}</p>
-                        {% else %}
-                            <ul class="description">
-                                {% for item in job.description %}
-                                    <li>{{ item }}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
-                    </div>
-                {% endfor %}
-            </div>
+            {{ render_experiences(data.experiences) }}
         </div>
     </section>
 
@@ -86,18 +69,7 @@
     <section class="education" id="education">
         <div class="container">
             <h2>Education</h2>
-            <div class="education-container">
-                {% for school in data.education %}
-                    <div class="education-item">
-                        <div class="education-header">
-                            <h3>{{ school.degree }}</h3>
-                            <p class="school">{{ school.school }}</p>
-                        </div>
-                        <p class="graduation">{{ school.graduation }}</p>
-                        <p class="details">{{ school.details }}</p>
-                    </div>
-                {% endfor %}
-            </div>
+            {{ render_education(data.education) }}
         </div>
     </section>
 
@@ -120,7 +92,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2024 {{ data.name }}. All rights reserved.</p>
+            <p>&copy; 2026 {{ data.name }}. All rights reserved.</p>
         </div>
     </footer>
 </body>

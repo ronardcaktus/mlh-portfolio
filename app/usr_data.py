@@ -2,7 +2,7 @@ portfolio_data = {
     'name': 'Ronard Luna',
     'title': 'Backend & Devops Engineer',
     'about': 'Hello world, my name is Ronard. I am an avid learner who enjoys challenges, learning about'
-    ' new technologies, and most importantly designing simple systems for people.',
+    'new technologies, and most importantly designing simple systems for people.',
     'experiences': [
         {
             'position': 'Backend & Devops Engineer',
@@ -17,12 +17,24 @@ portfolio_data = {
                 'Terraform and Ansible handling all provisioning and CI/CD. Kept services at 99%+ uptime '
                 'and cut manual deployment time significantly'
             ]
+        },
+        {
+            'position': 'MLH Fellow',
+            'company': 'MLH x Meta',
+            'duration': '2026',
+            'description': [
+                'Learning how Meta does Production Engineering (PE)'
+            ]
         }
     ],
     'education': [
         {
             'school': 'Utah State University',
             'degree': 'Bachelor\'s Degree',
+        },
+        {
+            'school': 'MLH & Meta',
+            'degree': 'Fellowship',
         }
     ],
     'hobbies': [
