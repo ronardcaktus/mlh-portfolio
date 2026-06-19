@@ -427,6 +427,40 @@ body {
     font-style: italic;
 }
 
+.travel-map-link-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.travel-map-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #1d539f 0%, #2563a5 100%);
+    color: white;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.travel-map-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(29, 83, 159, 0.25);
+}
+
+.travel-map-section {
+    padding: 0 20px 50px 20px;
+}
+
+.travel-map {
+    width: 100%;
+    height: 560px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
 /* Footer */
 .footer {
     background-color: #1d539f;
@@ -579,6 +613,10 @@ body {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .travel-map {
+        height: 440px;
+    }
+
     .experience-item,
     .education-item {
         padding: 20px;
@@ -622,6 +660,10 @@ body {
 
     .travels-container {
         grid-template-columns: 1fr;
+    }
+
+    .travel-map {
+        height: 360px;
     }
 }
 

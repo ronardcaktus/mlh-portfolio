@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Travel Locations - Personal Portfolio">
+    <meta property="og:description" content="Map of places I have visited in the United States">
+    <meta property="og:url" content="{{ data.url }}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
+    <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <title>Travel Locations - {{ data.title }}</title>
+</head>
+
+<body>
+    <header class="nav-bar">
+        <div class="nav-content">
+            <a href="/">
+                <div class="nav-logo">
+                    <img src="./static/img/logo.svg" alt="Logo" />
+                </div>
+            </a>
+            <nav class="nav-menu">
+                {% for page in pages %}
+                    <a href="{{ page.url }}" class="nav-link{% if page.url == '/travel-locations' %} active{% endif %}">{{ page.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Travel Locations</h1>
+            <p class="header-subtitle">Some places I have visited across the United States</p>
+        </div>
+    </section>
+
+    <section class="travel-map-section" id="travel-locations">
+        <div class="container">
+            <div id="map" class="travel-map"></div>
+        </div>
+    </section>
+
+    <section class="back-section">
+        <div class="container">
+            <a href="/" class="back-link">← Back</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 {{ data.name }}. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        const places = {{ visited | tojson }};
+
+        const map = L.map('map').setView([39.5, -98.0], 4);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        places.forEach(p => {
+            L.marker([p.lat, p.lng]).addTo(map)
+                .bindPopup('<b>' + p.place + '</b><br>' + p.note);
+        });
+    </script>
+</body>
+
+</html>

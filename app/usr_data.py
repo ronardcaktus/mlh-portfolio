@@ -61,5 +61,85 @@ portfolio_data = {
         {'country': 'Norway', 'visited': 2025},
         {'country': 'Denmark', 'visited': 2025},
         {'country': 'Thailand', 'visited': 2024},
+    ],
+    'visited': [
+        {
+            'place': 'Providence, Rhode Island, USA',
+            'lat': 41.8240,
+            'lng': -71.4128,
+            'note': 'Rhode Island'
+        },
+        {
+            'place': 'Raleigh, North Carolina, USA',
+            'lat': 35.7796,
+            'lng': -78.6382,
+            'note': 'Raleigh'
+        },
+        {
+            'place': 'Charlotte, North Carolina, USA',
+            'lat': 35.2271,
+            'lng': -80.8431,
+            'note': 'North Carolina'
+        },
+        {
+            'place': 'New York, USA',
+            'lat': 40.7128,
+            'lng': -74.0060,
+            'note': 'New York'
+        },
+        {
+            'place': 'Chicago, USA',
+            'lat': 41.8781,
+            'lng': -87.6298,
+            'note': 'Chicago'
+        },
+        {
+            'place': 'Salt Lake City, Utah, USA',
+            'lat': 40.7608,
+            'lng': -111.8910,
+            'note': 'Utah'
+        },
+        {
+            'place': 'San Diego, California, USA',
+            'lat': 32.7157,
+            'lng': -117.1611,
+            'note': 'California'
+        },
+        {
+            'place': 'Los Angeles, California, USA',
+            'lat': 34.0522,
+            'lng': -118.2437,
+            'note': 'Los Angeles'
+        },
+        {
+            'place': 'Washington, District of Columbia, USA',
+            'lat': 38.9072,
+            'lng': -77.0369,
+            'note': 'Washington, DC'
+        },
+        {
+            'place': 'Boston, Massachusetts, USA',
+            'lat': 42.3601,
+            'lng': -71.0589,
+            'note': 'Boston'
+        },
+        {
+            'place': 'Baltimore, Maryland, USA',
+            'lat': 39.2904,
+            'lng': -76.6122,
+            'note': 'Baltimore, MD'
+        },
+        {
+            'place': 'Philadelphia, Pennsylvania, USA',
+            'lat': 39.9526,
+            'lng': -75.1652,
+            'note': 'Philadelphia'
+        },
+        {
+            'place': 'Bridgeport, Connecticut, USA',
+            'lat': 41.1792,
+            'lng': -73.1894,
+            'note': 'Bridgeport, CT'
+        }
     ]
 }
