@@ -1,0 +1,69 @@
+{% macro render_experiences(experiences) %}
+    <div class="experience-container">
+        {% for job in experiences %}
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>{{ job.position }}</h3>
+                    <p class="company">{{ job.company }}</p>
+                </div>
+                <p class="duration">{{ job.duration }}</p>
+                {% if job.description is string %}
+                    <p class="description">{{ job.description }}</p>
+                {% else %}
+                    <ul class="description">
+                        {% for item in job.description %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        {% else %}
+            <p class="description">No work experience added yet.</p>
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+
+{% macro render_education(education) %}
+    <div class="education-container">
+        {% for school in education %}
+            <div class="education-item">
+                <div class="education-header">
+                    <h3>{{ school.degree }}</h3>
+                    <p class="school">{{ school.school }}</p>
+                </div>
+                {% if school.graduation %}
+                    <p class="graduation">{{ school.graduation }}</p>
+                {% endif %}
+                {% if school.details %}
+                    <p class="details">{{ school.details }}</p>
+                {% endif %}
+            </div>
+        {% else %}
+            <p class="details">No education entries added yet.</p>
+        {% endfor %}
+    </div>
+{% endmacro %}
+
+
+{% macro render_hobbies(hobbies, card_class='hobby-card-detail', grid_class='hobbies-detailed-grid') %}
+    <div class="{{ grid_class }}">
+        {% for hobby in hobbies %}
+            <div class="{{ card_class }}">
+                <div class="hobby-image-large">
+                    {% if hobby.image and hobby.image.startswith('http') %}
+                        <img src="{{ hobby.image }}" alt="{{ hobby.name }}">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='img/' ~ hobby.image) }}" alt="{{ hobby.name }}">
+                    {% endif %}
+                </div>
+                <div class="hobby-content-detail">
+                    <h3>{{ hobby.name }}</h3>
+                    <p>{{ hobby.description }}</p>
+                </div>
+            </div>
+        {% else %}
+            <p class="details">No hobbies added yet.</p>
+        {% endfor %}
+    </div>
+{% endmacro %}

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% from '_sections.html' import render_experiences, render_education %}
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:title" content="Personal Portfolio">
     <meta property="og:description" content="My Personal Portfolio">
-    <meta property="og:url" content="{{ url }}">
+    <meta property="og:url" content="{{ data.url }}">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -16,25 +18,83 @@
 
     <link lang='sass' rel="stylesheet" href="./static/styles/main.css">
     <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
-    <title>{{ title }}</title>
+    <title>{{ data.title }}</title>
 </head>
 
 <body>
+    <!-- Nav Bar -->
     <header class="nav-bar">
         <div class="nav-content">
             <a href="/">
                 <div class="nav-logo">
-                    <img src="./static/img/logo.svg" />
+                    <img src="./static/img/logo.svg" alt="Logo" />
                 </div>
             </a>
+            <!-- Menu Bar -->
+            <nav class="nav-menu">
+                {% for page in pages %}
+                    <a href="{{ page.url }}" class="nav-link">{{ page.name }}</a>
+                {% endfor %}
+            </nav>
         </div>
     </header>
 
-    <div class="profile">
+    <!-- Profile Section -->
+    <section class="profile">
         <div id="profile-picture" class="profile-picture">
-            <img src="./static/img/logo.jpg">
+            <img src="./static/img/me.png" alt="Profile Picture">
         </div>
-        <h1>{{ title }}</h1>
-    </div>
+        <h1>{{ data.name }}</h1>
+        <p class="profile-title">{{ data.title }}</p>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p class="about-text">{{ data.about }}</p>
+            
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section class="experience" id="experience">
+        <div class="container">
+            <h2>Work Experience</h2>
+            {{ render_experiences(data.experiences) }}
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <div class="container">
+            <h2>Education</h2>
+            {{ render_education(data.education) }}
+        </div>
+    </section>
+
+    <!-- Travels Section -->
+    <section class="travels" id="travels">
+        <div class="container">
+            <h2>Places I've Traveled</h2>
+            <div class="travels-container">
+                {% for destination in data.travels %}
+                    <div class="travel-item">
+                        <span class="travel-country">{{ destination.country }}</span>
+                        <span class="travel-year">{{ destination.visited }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="travel-note">Visited {{ data.travels | length }} countries around the world!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 {{ data.name }}. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
+
 </html>
