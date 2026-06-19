@@ -5,6 +5,7 @@ from .usr_data import portfolio_data
 pages = [
     {'name': 'Home', 'url': '/'},
     {'name': 'Hobbies', 'url': '/hobbies'},
+    {'name': 'Travel Locations', 'url': '/travel-locations'},
 ]
 
 # Views
@@ -20,3 +21,9 @@ def index_view():
 
 def hobbies_view():
     return render_template('hobbies.html', **template_context())
+
+
+def travel_locations_view():
+    context = template_context()
+    context['visited'] = context['data'].get('visited', [])
+    return render_template('travel_locations.html', **context)

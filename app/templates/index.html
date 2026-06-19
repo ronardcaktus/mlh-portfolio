@@ -73,19 +73,14 @@
         </div>
     </section>
 
-    <!-- Travels Section -->
-    <section class="travels" id="travels">
+    <!-- Travel Locations Section -->
+    <section class="travels" id="travel-locations">
         <div class="container">
-            <h2>Places I've Traveled</h2>
-            <div class="travels-container">
-                {% for destination in data.travels %}
-                    <div class="travel-item">
-                        <span class="travel-country">{{ destination.country }}</span>
-                        <span class="travel-year">{{ destination.visited }}</span>
-                    </div>
-                {% endfor %}
+            <h2>Travel Locations</h2>
+            <p class="travel-note">Explore a map of places I have visited in the United States.</p>
+            <div class="travel-map-link-wrap">
+                <a href="/travel-locations" class="travel-map-link">View Travel Map</a>
             </div>
-            <p class="travel-note">Visited {{ data.travels | length }} countries around the world!</p>
         </div>
     </section>
 
