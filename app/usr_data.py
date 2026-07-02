@@ -1,8 +1,8 @@
 portfolio_data = {
     'name': 'Ronard Luna',
     'title': 'Backend & Devops Engineer',
-    'about': 'Hello world, my name is Ronard. I am an avid learner who enjoys challenges, learning about'
-    'new technologies, and most importantly designing simple systems for people.',
+    'about': 'Hello world, my name is Ronard. I am an avid learner who enjoys challenges, learning about '
+    'new technologies, and most importantly designing easy-to-use systems. This portfolio\'s deployment is automated.',
     'experiences': [
         {
             'position': 'Backend & Devops Engineer',
