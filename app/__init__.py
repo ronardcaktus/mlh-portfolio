@@ -1,6 +1,6 @@
 import os
 import datetime
-from flask import Flask, request
+from flask import Flask, request, render_template
 from dotenv import load_dotenv
 from peewee import *
 from playhouse.shortcuts import model_to_dict
@@ -63,3 +63,8 @@ def delete_time_line_post(post_id):
     if deleted == 0:
         return {'error': f'timeline post {post_id} not found'}, 404
     return {'deleted': post_id}
+
+
+@app.route("/timeline")
+def timeline():
+    return render_template('timeline.html', title="Timeline")
