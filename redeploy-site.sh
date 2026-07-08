@@ -24,7 +24,15 @@ source .envrc || { echo "Error: .envrc not found. Run ./secrets.sh locally to pu
 
 # 6. Start a new detached Tmux session and spin up the Flask server
 echo "Starting Flask server inside a new detached tmux session..."
-tmux new-session -d -s flask-server "cd $(pwd) && source python3-virtualenv/bin/activate && source .envrc && flask run --host=0.0.0.0"
+tmux new-session -d -s flask-server "cd $(pwd) && source python3-virtualenv/bin/activate && source .envrc && flask run --host=0.0.0.0 2>&1 | tee ~/flask-server.log"
 
-echo "🚀 Deployment successfully completed!"
-echo "Go to http://rmoon.duckdns.org:5000/"
+# 7. Verify Flask actually stayed up
+sleep 3
+if curl -s -m 5 http://localhost:5000 > /dev/null; then
+    echo "🚀 Deployment successfully completed!"
+    echo "Go to http://rmoon.duckdns.org:5000/"
+else
+    echo "❌ Flask is not responding. Last log lines:"
+    tail -20 ~/flask-server.log
+    exit 1
+fi
