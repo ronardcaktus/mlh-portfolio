@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:title" content="Timeline">
+    <meta property="og:description" content="Timeline posts">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/styles/main.css">
+    <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <header class="nav-bar">
+        <div class="nav-content">
+            <a href="/">
+                <div class="nav-logo">
+                    <img src="./static/img/logo.svg" alt="Logo" />
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/hobbies" class="nav-link">Hobbies</a>
+                <a href="/travel-locations" class="nav-link">Travel Locations</a>
+                <a href="/timeline" class="nav-link active">Timeline</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="tl-header">
+        <div class="container">
+            <h1>Timeline</h1>
+            <p>Leave a note — it lands at the top of the feed.</p>
+        </div>
+    </section>
+
+    <main class="tl-main">
+        <!-- Compose form -->
+        <form id="timeline-form" class="tl-compose">
+            <h2>New Post</h2>
+            <div class="tl-field-row">
+                <div class="tl-field">
+                    <label for="tl-name">Name</label>
+                    <input id="tl-name" name="name" type="text" required maxlength="120" autocomplete="name">
+                </div>
+                <div class="tl-field">
+                    <label for="tl-email">Email</label>
+                    <input id="tl-email" name="email" type="email" required maxlength="254" autocomplete="email">
+                </div>
+            </div>
+            <div class="tl-field">
+                <label for="tl-content">Message</label>
+                <textarea id="tl-content" name="content" required maxlength="2000"></textarea>
+            </div>
+            <div class="tl-compose-footer">
+                <span id="tl-status" class="tl-status" role="status"></span>
+                <button type="submit" class="tl-submit" id="tl-submit">Post</button>
+            </div>
+        </form>
+
+        <!-- Feed -->
+        <div class="tl-feed-heading">
+            <h2>Posts</h2>
+            <span class="tl-count" id="tl-count"></span>
+        </div>
+        <ol class="tl-feed" id="tl-feed"></ol>
+        <p class="tl-empty" id="tl-empty" hidden>Nothing here yet — be the first to post.</p>
+    </main>
+
+    <script src="./static/js/timeline.js"></script>
+</body>
+
+</html>

@@ -686,3 +686,267 @@ body {
     font-size: 50px;
     font-weight: 700;
 }
+/* Timeline Page */
+.tl-header {
+    background: linear-gradient(135deg, #1d539f 0%, #2563a5 100%);
+    color: white;
+    padding: 48px 20px 56px;
+}
+
+.tl-header .container {
+    max-width: 720px;
+}
+
+.tl-header h1 {
+    margin: 0 0 6px 0;
+    font-size: 38px;
+    font-weight: 700;
+    color: white;
+}
+
+.tl-header p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 17px;
+}
+
+.tl-main {
+    max-width: 720px;
+    margin: -28px auto 80px;
+    padding: 0 20px;
+}
+
+/* Timeline compose card */
+.tl-compose {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(29, 83, 159, 0.12);
+    padding: 28px;
+    border-top: 4px solid #1C539F;
+}
+
+.tl-compose h2 {
+    margin: 0 0 18px 0;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #1d539f;
+}
+
+.tl-field-row {
+    display: flex;
+    gap: 14px;
+}
+
+.tl-field {
+    flex: 1;
+    margin-bottom: 14px;
+}
+
+.tl-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.tl-field input,
+.tl-field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Roboto", serif;
+    font-size: 15px;
+    color: #333;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 10px 12px;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.tl-field textarea {
+    resize: vertical;
+    min-height: 96px;
+    line-height: 1.5;
+}
+
+.tl-field input:focus,
+.tl-field textarea:focus {
+    outline: none;
+    border-color: #1d539f;
+    background-color: white;
+}
+
+.tl-compose-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.tl-status {
+    font-size: 14px;
+    color: #4CAF50;
+    min-height: 1em;
+}
+
+.tl-status.error {
+    color: #c0392b;
+}
+
+.tl-submit {
+    background-color: #1C539F;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 11px 26px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.tl-submit:hover {
+    background-color: #16417d;
+}
+
+.tl-submit:disabled {
+    background-color: #9db4d4;
+    cursor: default;
+}
+
+/* Timeline feed rail */
+.tl-feed-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 44px 0 22px;
+}
+
+.tl-feed-heading h2 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #1d539f;
+}
+
+.tl-count {
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+    color: #999;
+}
+
+.tl-feed {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+.tl-feed::before {
+    content: "";
+    position: absolute;
+    left: 23px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: #d7ddea;
+}
+
+.tl-post {
+    position: relative;
+    padding-left: 68px;
+    margin-bottom: 26px;
+}
+
+.tl-post:last-child {
+    margin-bottom: 0;
+}
+
+.tl-avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid #f5f5f9;
+    box-shadow: 0 0 0 2px #d7ddea;
+    background-color: #d7ddea;
+    display: block;
+}
+
+.tl-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+    padding: 16px 20px;
+}
+
+.tl-card-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.tl-card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1d539f;
+}
+
+.tl-card-date {
+    font-family: "Roboto Mono", monospace;
+    font-size: 12px;
+    color: #999;
+    white-space: nowrap;
+}
+
+.tl-card-content {
+    margin: 0;
+    font-size: 15px;
+    color: #555;
+    white-space: pre-line;
+}
+
+.tl-empty {
+    text-align: center;
+    color: #999;
+    font-size: 15px;
+    padding: 36px 0;
+}
+
+.tl-post.tl-new .tl-card {
+    animation: tl-pop 0.45s ease;
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.45);
+}
+
+@keyframes tl-pop {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 560px) {
+    .tl-field-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .tl-card-meta {
+        flex-direction: column;
+        gap: 2px;
+    }
+}

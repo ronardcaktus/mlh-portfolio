@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# 1. Kill all existing tmux sessions
+echo "Stopping all existing tmux sessions..."
+tmux kill-server 2>/dev/null
+
+# 2. cd into mlh-portfolio dir
+PROJECT_DIR="mlh-portfolio"
+echo "Navigating to project directory..."
+cd "$PROJECT_DIR" || { echo "Error: Could not enter directory $PROJECT_DIR"; exit 1; }
+
+# 3. Fetch latest changes and hard reset to origin/main
+echo "Updating code from GitHub main branch..."
+git fetch && git reset origin/main --hard
+
+# 4. Enter the python virtual environment and Install python dependencies
+echo "Activating virtual environment and updating dependencies..."
+source python3-virtualenv/bin/activate
+pip install -r requirements.txt
+
+# 5. Start a new detached Tmux session and spin up the Flask server
+echo "Starting Flask server inside a new detached tmux session..."
+tmux new-session -d -s flask-server "cd $(pwd) && source python3-virtualenv/bin/activate && flask run --host=0.0.0.0"
+
+echo "🚀 Deployment successfully completed!"
+echo "Go to http://rmoon.duckdns.org:5000/"

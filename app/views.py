@@ -6,6 +6,7 @@ pages = [
     {'name': 'Home', 'url': '/'},
     {'name': 'Hobbies', 'url': '/hobbies'},
     {'name': 'Travel Locations', 'url': '/travel-locations'},
+    {'name': 'Timeline', 'url': '/timeline'},
 ]
 
 # Views
