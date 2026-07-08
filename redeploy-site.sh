@@ -18,9 +18,13 @@ echo "Activating virtual environment and updating dependencies..."
 source python3-virtualenv/bin/activate
 pip install -r requirements.txt
 
-# 5. Start a new detached Tmux session and spin up the Flask server
+# 5. Set up environment variables (pushed to this server from the local .envrc by secrets.sh)
+echo "Setting up environment variables..."
+source .envrc || { echo "Error: .envrc not found. Run ./secrets.sh locally to push secrets to this server."; exit 1; }
+
+# 6. Start a new detached Tmux session and spin up the Flask server
 echo "Starting Flask server inside a new detached tmux session..."
-tmux new-session -d -s flask-server "cd $(pwd) && source python3-virtualenv/bin/activate && flask run --host=0.0.0.0"
+tmux new-session -d -s flask-server "cd $(pwd) && source python3-virtualenv/bin/activate && source .envrc && flask run --host=0.0.0.0"
 
 echo "🚀 Deployment successfully completed!"
 echo "Go to http://rmoon.duckdns.org:5000/"
