@@ -14,12 +14,22 @@ if os.getenv("TESTING") == "true":
     print("Running in test mode")
     mydb = SqliteDatabase('file:memory?mode=memory&cache=shared', uri=True)
 else:
-    mydb = MySQLDatabase(os.getenv("MYSQL_DATABASE"),
-        user=os.getenv("MYSQL_USER"),
-        password=os.getenv("MYSQL_PASSWORD"),
-        host=os.getenv("MYSQL_HOST"),
-        port=3306
-    )
+    mysql_host = os.getenv("MYSQL_HOST")
+    mysql_user = os.getenv("MYSQL_USER")
+    mysql_password = os.getenv("MYSQL_PASSWORD")
+    mysql_database = os.getenv("MYSQL_DATABASE")
+
+    if mysql_host and mysql_user and mysql_password and mysql_database:
+        mydb = MySQLDatabase(
+            mysql_database,
+            user=mysql_user,
+            password=mysql_password,
+            host=mysql_host,
+            port=3306,
+        )
+    else:
+        print("MYSQL_* env vars are missing; using local SQLite database")
+        mydb = SqliteDatabase('portfolio.db')
 
 class TimelinePost(Model):
     name = CharField()
@@ -29,8 +39,8 @@ class TimelinePost(Model):
     class Meta:
         database = mydb
 
-mydb.connect()
-mydb.create_tables([TimelinePost])
+mydb.connect(reuse_if_open=True)
+mydb.create_tables([TimelinePost], safe=True)
 
 def create_app():
     app = Flask(__name__)

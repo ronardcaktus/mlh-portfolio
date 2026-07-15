@@ -15,8 +15,8 @@
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="./static/styles/main.css">
-    <link rel='icon' href='./static/img/favicon.ico' type='image/x-icon' />
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel='icon' href="{{ url_for('static', filename='img/favicon.ico') }}" type='image/x-icon' />
     <title>{{ title }}</title>
 </head>
 
@@ -26,7 +26,7 @@
         <div class="nav-content">
             <a href="/">
                 <div class="nav-logo">
-                    <img src="./static/img/logo.svg" alt="Logo" />
+                    <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo" />
                 </div>
             </a>
             <nav class="nav-menu">
@@ -78,7 +78,7 @@
         <p class="tl-empty" id="tl-empty" hidden>Nothing here yet — be the first to post.</p>
     </main>
 
-    <script src="./static/js/timeline.js"></script>
+    <script src="{{ url_for('static', filename='js/timeline.js') }}"></script>
 </body>
 
 </html>
