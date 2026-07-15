@@ -1,12 +1,7 @@
-# test_db.py
-
 import unittest
-import os
-os.environ['TESTING'] = 'true'
-
 from peewee import *
 
-from app import TimelinePost, mydb
+from app import TimelinePost
 
 MODELS = [TimelinePost]
 
@@ -14,31 +9,33 @@ MODELS = [TimelinePost]
 test_db = SqliteDatabase(':memory:')
 
 class TestTimelinePost(unittest.TestCase):
-    def setUp(self):
-        # Bind model classes to test db. Since we have a complete list of
-        # all models, we do not need to recursively bind dependencies.
-        test_db.bind(MODELS, bind_refs=False, bind_backrefs=False)
 
+    user_1 = dict(name='John Doe', email='john@example.com', content='Hello world, I\'m John!')
+    user_2 = dict(name='Jane Doe', email='jame@example.com', content='Hello world, I\'m Jane!')
+
+    def setUp(self):
+        # Bind model classes to test db. 
+        test_db.bind(MODELS, bind_refs=False, bind_backrefs=False)
         test_db.connect()
         test_db.create_tables(MODELS)
-
+    
     def tearDown(self):
-        # Not strictly necessary since SQLite in-memory databases only live
-        # for the duration of the connection, and in the next step we close
-        # the connection...but a good practice all the same.
-        test_db.drop_tables(MODELS)
-
-        # Close connection to db.
+        test_db.drop_tables (MODELS)
         test_db.close()
 
-        # Rebind models to the app's db. Binding is global state on the model
-        # class, so leaving it pointed at this closed db breaks later tests.
-        mydb.bind(MODELS, bind_refs=False, bind_backrefs=False)
-
-    def test_timeline_post(self):
-        # Create 2 timeline posts.
-        first_post = TimelinePost.create(name='John Doe', email='john@example.com', content='Hello world, I\'m John!')
+    def test_timeline_post(self) :
+        first_post = TimelinePost.create(**self.user_1)
         assert first_post.id == 1
-        second_post = TimelinePost.create(name='Jane Doe', email='jame@example.com', content='Hello world, I\'m Jane!')
-        assert second_post.id == 2
-        # TODO: Get timeline posts and assert that they are correct
+        second_post = TimelinePost.create(**self.user_2)
+        assert second_post. id == 2
+
+        post_1 = TimelinePost.get_by_id(1)
+        self.assertEqual(post_1.name, self.user_1['name'])
+        self.assertEqual(post_1.email, self.user_1['email'])
+        self.assertEqual(post_1.content, self.user_1['content'])
+
+        post_2 = TimelinePost.get_by_id(2)
+        self.assertEqual(post_2.name, self.user_2['name'])
+        self.assertEqual(post_2.email, self.user_2['email'])
+        self.assertEqual(post_2.content, self.user_2['content'])
+        
