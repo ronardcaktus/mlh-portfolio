@@ -10,7 +10,8 @@ services:
     ports:
       - "5001:5000"
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   mysql:
     container_name: mysql 
@@ -23,6 +24,12 @@ services:
       - MARIADB_DATABASE=${MYSQL_DATABASE}
       - MARIADB_USER=${MYSQL_USER}
       - MARIADB_PASSWORD=${MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "mariadb-admin ping -h 127.0.0.1 -uroot -p$$MARIADB_ROOT_PASSWORD --silent"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 15s
     volumes:
       - mydatabase:/var/lib/mysql
 

@@ -1,5 +1,6 @@
 import os
 import re
+import time
 import datetime
 from flask import Flask, request, render_template
 from dotenv import load_dotenv
@@ -39,8 +40,20 @@ class TimelinePost(Model):
     class Meta:
         database = mydb
 
-mydb.connect(reuse_if_open=True)
-mydb.create_tables([TimelinePost], safe=True)
+def initialize_database(max_retries=30, delay_seconds=2):
+    for attempt in range(1, max_retries + 1):
+        try:
+            mydb.connect(reuse_if_open=True)
+            mydb.create_tables([TimelinePost], safe=True)
+            return
+        except OperationalError as exc:
+            if attempt == max_retries:
+                raise
+            print(f"Database not ready yet (attempt {attempt}/{max_retries}): {exc}")
+            time.sleep(delay_seconds)
+
+
+initialize_database()
 
 def create_app():
     app = Flask(__name__)
