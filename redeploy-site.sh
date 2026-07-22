@@ -22,4 +22,4 @@ echo "Building and starting containers..."
 docker compose -f docker-compose.prod.yml up -d --build
 
 echo "App deployed"
-echo "http://rmoon.duckdns.org:5001/"
+echo "https://rmoon.duckdns.org/"
