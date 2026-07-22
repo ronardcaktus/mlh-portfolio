@@ -7,8 +7,6 @@ services:
       - .env
     environment:
       - MYSQL_HOST=mysql
-    ports:
-      - "5001:5000"
     depends_on:
       mysql:
         condition: service_healthy
@@ -36,7 +34,7 @@ services:
     image: jonasal/nginx-certbot
     restart: always
     environment:
-      - CERTBOT_EMAIL=name@example.com
+      - CERTBOT_EMAIL=ronarddevelops@gmail.com
     ports:
       - "80:80"
       - "443:443"
