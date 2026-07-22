@@ -5,6 +5,8 @@ services:
     restart: always 
     env_file:
       - .env
+    environment:
+      - MYSQL_HOST=mysql
     ports:
       - "5001:5000"
     depends_on:
@@ -16,6 +18,11 @@ services:
     restart: always 
     env_file:
       - .env
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${MYSQL_DATABASE}
+      - MARIADB_USER=${MYSQL_USER}
+      - MARIADB_PASSWORD=${MYSQL_PASSWORD}
     volumes:
       - mydatabase:/var/lib/mysql
 
