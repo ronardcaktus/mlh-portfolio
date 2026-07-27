@@ -54,23 +54,19 @@ pip install -r requirements.txt
 
 Create a .env file using the example.env template (make a copy using the variables inside of the template)
 
-Start flask development server
+Start the application using Docker Compose
 ```bash
-$ export FLASK_ENV=development
-$ flask run
+$ docker compose up -d
 ```
 
-You should get a response like this in the terminal:
-```
-❯ flask run
- * Environment: development
- * Debug mode: on
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+You'll now be able to access the website at `localhost:5001` or `http://127.0.0.1:5001` in the browser!
+
+To stop the application:
+```bash
+$ docker compose down
 ```
 
-You'll now be able to access the website at `localhost:5000` or `127.0.0.1:5000` in the browser! 
-
-*Note: The portfolio site will only work on your local machine while you have it running inside of your terminal. We'll go through how to host it in the cloud in the next few weeks!* 
+*Note: The portfolio site will only work on your local machine while you have it running inside of Docker. We'll go through how to host it in the cloud in the next few weeks!* 
 
 ## Run tests
 
