@@ -16,13 +16,13 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/deploy-key.pem
           chmod 600 ~/.ssh/deploy-key.pem
-          cat >> ~/.ssh/config <<END
-          Host my-vps
-            HostName $SSH_IP
-            User $SSH_USER
-            IdentityFile ~/.ssh/deploy-key.pem
-            StrictHostKeyChecking no
-          END
+          printf '%s\n' \
+            "Host my-vps" \
+            "  HostName $SSH_IP" \
+            "  User $SSH_USER" \
+            "  IdentityFile ~/.ssh/deploy-key.pem" \
+            "  StrictHostKeyChecking no" \
+            >> ~/.ssh/config
         env:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
