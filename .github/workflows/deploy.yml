@@ -35,7 +35,7 @@ jobs:
         run: ssh my-vps 'cd /root/mlh-portfolio && docker compose ps'
 
       - name: Deployment Test
-        run: ssh my-vps 'cd /root/mlh-portfolio && bash ./curl-test.sh http://localhost:5001'
+        run: ssh my-vps 'cd /root/mlh-portfolio && bash ./curl-test.sh https://rmoon.duckdns.org'
 
       - name: Notify Discord on Success
         if: success()
