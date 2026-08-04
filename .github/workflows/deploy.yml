@@ -35,7 +35,20 @@ jobs:
         run: ssh my-vps 'cd /root/mlh-portfolio && docker compose ps'
 
       - name: Deployment Test
-        run: ssh my-vps 'cd /root/mlh-portfolio && bash ./curl-test.sh https://rmoon.duckdns.org'
+        run: |
+          ssh my-vps '
+            set -e
+            cd /root/mlh-portfolio
+
+            echo "1) Checking container status"
+            docker compose -f docker-compose.prod.yml ps
+
+            echo "2) Checking site reachability"
+            curl -fsS --retry 10 --retry-delay 3 --retry-connrefused https://rmoon.duckdns.org/ > /dev/null
+
+            echo "3) Checking HTTP status code"
+            test "$(curl -sS -o /dev/null -w "%{http_code}" https://rmoon.duckdns.org/)" = "200"
+          '
 
       - name: Notify Discord on Success
         if: success()
